@@ -11,4 +11,11 @@
   <p>
     <em>Established in: <%= brewery.year %></em>
   </p>
+
+  <div>
+    <% brewery.beers.each do |beer| %>
+      <%= link_to beer.name, beer %>
+    <% end %>
+  </div>
+
 </div>
