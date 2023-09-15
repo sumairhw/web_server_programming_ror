@@ -1,3 +1,4 @@
-<li id="<%= dom_id rating %>">
+<li id="<%= dom_id rating %>", class="flex gap-1 mb-4">
   <%= "#{rating.beer.name}: #{rating.score}" %>
+  <%= button_to 'delete', rating, method: :delete, form: { data: { 'turbo-confirm': 'Are you sure?' } }, class:"link text-error"%>
 </li>
