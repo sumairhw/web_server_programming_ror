@@ -5,4 +5,8 @@ class Beer < ApplicationRecord
   def average_rating
     (ratings.sum(:score) / ratings.count).to_f
   end
+
+  def to_s
+    "#{brewery.name} #{name}"
+  end
 end
