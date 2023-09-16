@@ -1,0 +1,11 @@
+<h2>Create new rating</h2>
+
+<%= form_with model:@rating, class:"flex flex-col gap-4 items-center" do |f| %>
+  <%= f.label :beer_id, "beer" %>
+  <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s) %>
+
+  <%= f.label :score, "Score" %>
+  <%= f.number_field :score %>
+
+  <%= f.submit "Creating Rating", class:"btn btn-primary" %>
+<% end %>

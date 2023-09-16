@@ -1,4 +1,4 @@
-<div id="<%= dom_id beer %>">
+<div id="<%= dom_id beer %>" class="p-8">
   <p>
     <strong>Name:</strong>
     <%= link_to beer.name, beer %>
@@ -13,5 +13,13 @@
     <strong>Brewery:</strong>
     <%= link_to beer.brewery.name, beer.brewery %>
   </p>
+
+  <div>
+    <% if beer.ratings.any? %>
+      <p>Beer has <%= pluralize(beer.ratings.count, 'rating') %> with average of <%= beer.average_rating %></p>
+    <% else %>
+      <p>Beer has no ratings</p>
+    <% end %>
+  </div>
 
 </div>

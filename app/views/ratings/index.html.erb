@@ -1,0 +1,9 @@
+<h1 class="text-3xl">Ratings</h1>
+
+<ul>
+  <% @ratings.each do |rating| %>
+    <%= render rating %>
+  <% end %>
+</ul>
+
+<%= link_to "New Rating", new_rating_path, class: "btn btn-primary mt-4" %>
