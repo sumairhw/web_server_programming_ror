@@ -17,7 +17,7 @@ class BeersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create beer" do
     assert_difference("Beer.count") do
-      post beers_url, params: {beer: {brewery_id: @beer.brewery_id, name: @beer.name, style: @beer.style}}
+      post beers_url, params: { beer: { brewery_id: @beer.brewery_id, name: @beer.name, style: @beer.style } }
     end
 
     assert_redirected_to beer_url(Beer.last)
@@ -34,7 +34,7 @@ class BeersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update beer" do
-    patch beer_url(@beer), params: {beer: {brewery_id: @beer.brewery_id, name: @beer.name, style: @beer.style}}
+    patch beer_url(@beer), params: { beer: { brewery_id: @beer.brewery_id, name: @beer.name, style: @beer.style } }
     assert_redirected_to beer_url(@beer)
   end
 

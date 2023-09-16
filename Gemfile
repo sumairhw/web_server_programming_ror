@@ -59,8 +59,9 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
-  gem "standard"
-  gem "standard-rails"
+  gem "relaxed-rubocop"
+  gem "rubocop"
+  gem "rubocop-rails"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -77,7 +78,7 @@ end
 
 gem "tailwindcss-rails", "~> 2.0"
 
-gem "dockerfile-rails", ">= 1.5", :group => :development
+gem "dockerfile-rails", ">= 1.5", group: :development
 
 gem "sentry-ruby", "~> 5.11"
 
