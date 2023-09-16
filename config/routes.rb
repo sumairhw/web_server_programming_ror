@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  root "breweries#index"
+
+  resources :users
   resources :beers
   resources :breweries
   resources :ratings, only: %i[index new create destroy]
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resource :session, only: %i[new create destroy]
 
-  # Defines the root path route ("/")
-  root "breweries#index"
+  get "signup", to: "users#new"
+  get 'signin', to: 'sessions#new'
+  delete 'signout', to: 'sessions#destroy'
 end

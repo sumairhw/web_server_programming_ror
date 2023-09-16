@@ -12,13 +12,30 @@
   </head>
 
   <body>
-    <div class="navbar bg-neutral text-neutral-content my-4 rounded-md">
+    <div class="navbar bg-neutral text-neutral-content my-4 rounded-md flex justify-between px-8">
       <div class="menu menu-horizontal gap-4">
         <%= link_to 'breweries', breweries_path %>
         <%= link_to 'beers', beers_path %>
         <%= link_to 'ratings', ratings_path %>
+        <%= link_to 'users', users_path %>
       </div>
+
+      <div class="menu menu-horizontal gap-4">
+        <% if current_user %>
+          <%= link_to "#{current_user.username}", user_path(current_user) %>
+          <%= link_to 'Rate a new Beer', ratings_path %>
+          <%= link_to "Signout", signout_path, data: {"turbo-method": :delete} %>
+        <% else %>
+          <%= link_to 'Signin', signin_path %>
+          <%= link_to 'Signup', signup_path %>
+        <% end %>
+      </div>
+
     </div>
+
+    <% if current_user %>
+      <p><%= current_user.username %> signed in</p>
+    <% end %>
 
     <%= yield %>
   </body>

@@ -11,7 +11,12 @@ class RatingsController < ApplicationController
   end
 
   def create
-    @rating = Rating.create(rating_params)
+    rating = Rating.create(rating_params)
+
+    # save the rating to a session
+    session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
+
+    redirect_to ratings_path
   end
 
   def destroy
@@ -23,7 +28,6 @@ class RatingsController < ApplicationController
 
   def rating_params
     params.require(:rating).permit(:score, :beer_id)
-    redirect_to ratings_path
   end
 
   def set_rating
