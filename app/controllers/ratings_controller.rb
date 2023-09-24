@@ -11,14 +11,15 @@ class RatingsController < ApplicationController
   end
 
   def create
-    rating = Rating.create(rating_params)
-    rating.user = current_user
+    @rating = Rating.create(rating_params)
+    @rating.user = current_user
 
-    # save the rating to a session
-    session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
-
-    rating.save
-    redirect_to current_user
+    if @rating.save
+      redirect_to current_user
+    else
+      @beers = Beer.all
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
