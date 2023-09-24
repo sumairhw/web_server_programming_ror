@@ -12,15 +12,19 @@ class RatingsController < ApplicationController
 
   def create
     rating = Rating.create(rating_params)
+    rating.user = current_user
 
     # save the rating to a session
     session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
 
-    redirect_to ratings_path
+    rating.save
+    redirect_to current_user
   end
 
   def destroy
-    @rating.delete
+    if @rating.user_id == current_user.id
+      @rating.delete
+    end
     redirect_to ratings_path
   end
 

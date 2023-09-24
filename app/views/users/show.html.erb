@@ -4,7 +4,33 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-    <%= render @user %>
+    <div id="<%= dom_id @user %>">
+      <p class="my-5">
+        <strong class="block font-medium mb-1 text-xl">Username:</strong>
+        <%= @user.username %>
+      </p>
+      <p>Has made <%= pluralize(@user.ratings.count, "rating") %> with an average of <%= @user.average_rating %></p>
+
+      <div class="py-4">
+        <h2 class="text-lg font-medium">Ratings</h2>
+
+        <ul>
+          <% @user.ratings.each do |rating| %>
+            <li id="<%= dom_id rating %>", class="flex gap-1 mb-4">
+              <%= "#{rating.beer.name}: #{rating.score}" %>
+              <%= button_to 'delete', rating, method: :delete, form: { data: { 'turbo-confirm': 'Are you sure?' } }, class:"link text-error"%>
+            </li>
+          <% end %>
+        </ul>
+
+      </div>
+
+      <% if action_name != "show" %>
+        <%= link_to "Show this user", @user, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= link_to 'Edit this user', edit_user_path(@user), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+        <hr class="mt-6">
+      <% end %>
+    </div>
 
     <%= link_to 'Edit this user', edit_user_path(@user), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
