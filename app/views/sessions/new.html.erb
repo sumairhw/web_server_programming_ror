@@ -1,5 +1,9 @@
 <h1>Sign in</h1>
 
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
+
 <%= form_with url: session_path, method: :post do |form| %>
   <%= form.text_field :username %>
   <%= form.submit "Log in" %>
